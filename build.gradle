@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.21'
+}
+
+group 'com.wd'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    mavenCentral()
+    google()
+}
+
+dependencies {
+    // compile 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.2'
+    testCompileOnly 'org.projectlombok:lombok:1.18.2'
+
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.31'
+
+    compile 'org.apache.commons:commons-lang3:3.10'
+
+    compile "mysql:mysql-connector-java:8.0.18"
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+    compile(group: "com.oracle", name: "ojdbc6", version: "11.2.0.3")
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2019.1.4'
+    // intellij.updateSinceUntilBuild true
+    intellij.updateSinceUntilBuild false
+    localPath '/Users/lww/Downloads/ideajar/ideaIC-2019.1.4'
+}
+
+patchPluginXml {
+    changeNotes """
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}

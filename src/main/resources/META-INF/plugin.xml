@@ -1,0 +1,30 @@
+<idea-plugin>
+    <id>com.wd.GoGenerator</id>
+    <name>GoGenerator</name>
+    <vendor email="lerder@foxmail.com" url="L">LER</vendor>
+
+    <description><![CDATA[
+        This is  a code generator for golang, with gorm framework, can generate code very fast
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <!--持久化-->
+        <projectService serviceImplementation="com.wd.storage.GenerateConfig"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="GoGeneratorId" class="com.wd.action.GoGeneratorAction" text="GoGenerator" description="GoGenerator">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <add-to-group group-id="MainToolBar" anchor="last"/>
+        </action>
+
+    </actions>
+</idea-plugin>
