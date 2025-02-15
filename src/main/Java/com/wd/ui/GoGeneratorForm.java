@@ -37,6 +37,7 @@ public class GoGeneratorForm extends DialogWrapper {
 	private JRadioButton initRadioButton;
 	private JPanel contentPanel;
 	private JPasswordField passwordField;
+	private JTextField dbNameField;
 
 	public GoGeneratorForm(@Nullable Project project) {
 		super(project);
