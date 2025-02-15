@@ -2,12 +2,12 @@ package com.wd.ui;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
-import com.intellij.openapi.util.IconLoader;
 import com.wd.icon.PluginIcons;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import org.jetbrains.annotations.Nullable;
@@ -21,7 +21,6 @@ public class GoGeneratorForm extends DialogWrapper {
 	private JComboBox dbSelected;
 	private JTextField dbUrl;
 	private JTextField usernameField;
-	private JTextField passwordField;
 	private JButton testConnectButton;
 	private JTextField projectPath;
 	private JButton selectPathButton;
@@ -37,13 +36,15 @@ public class GoGeneratorForm extends DialogWrapper {
 	private JRadioButton generateMarkRadioButton;
 	private JRadioButton initRadioButton;
 	private JPanel contentPanel;
+	private JPasswordField passwordField;
 
 	public GoGeneratorForm(@Nullable Project project) {
 		super(project);
 		init();
 		setTitle("Go Generator");
 
-		testConnectButton.setIcon(PluginIcons.lightning);
+		testConnectButton.setIcon(PluginIcons.testCustom);
+		selectPathButton.setIcon(PluginIcons.projectStructure);
 	}
 
 	@Nullable

@@ -21,7 +21,7 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="GoGeneratorId" class="com.wd.action.GoGeneratorAction" text="GoGenerator" description="GoGenerator">
+        <action id="GoGeneratorId" class="com.wd.action.GoGeneratorAction" text="GoGenerator" description="GoGenerator" icon="/icons/golang.svg">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
             <add-to-group group-id="MainToolBar" anchor="last"/>
         </action>
