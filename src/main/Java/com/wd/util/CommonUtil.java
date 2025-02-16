@@ -88,32 +88,34 @@ public class CommonUtil {
 
     public static Boolean check(JPanel contentPane, String host, String dbName, String username, String password) {
         if (host.isEmpty()) {
-            JOptionPane.showMessageDialog(contentPane, "数据库host不能为空！", "错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(contentPane, "DataBase Host is Empty！", "错误", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (dbName.isEmpty()) {
-            JOptionPane.showMessageDialog(contentPane, "数据库名称不能为空！", "错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(contentPane, "DataBase Name is Empty！", "错误", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (username.isEmpty()) {
-            JOptionPane.showMessageDialog(contentPane, "用户名不能为空！", "错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(contentPane, "DataBase Username is Empty！", "错误", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (password.isEmpty()) {
-            JOptionPane.showMessageDialog(contentPane, "密码不能为空！", "错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(contentPane, "DataBase Password is Empty！", "错误", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
     }
 
     public static GenerateConfig initGenerateConfig(Project project, JComboBox dbSelected, JTextField hostField, JTextField portField,
-            JTextField dbField, JTextField username, JPasswordField passwordField, JTextField projectPath, JTextField author, JRadioButton structRadioButton,
-            JRadioButton dbRadioButton, JRadioButton apiRadioButton, JRadioButton routerRadioButton, JRadioButton generateRadioButton, JRadioButton swaggerRadioButton, JRadioButton txRradioButton, String projectName) {
+            JTextField dbNameField, JTextField username, JPasswordField passwordField, JTextField projectPath,
+            JTextField author, JRadioButton structRadioButton, JRadioButton dbRadioButton, JRadioButton apiRadioButton,
+            JRadioButton routerRadioButton, JRadioButton generateMarkRadioButton, JRadioButton swaggerRadioButton, JRadioButton txRradioButton,
+            String projectName, String dbUrl) {
         GenerateConfig instance = GenerateConfig.getInstance(project);
         instance.setDbType(dbSelected.getSelectedItem() == null ? "" : dbSelected.getSelectedItem().toString());
         instance.setDbHost(hostField.getText());
         instance.setDbPort(portField.getText());
-        instance.setDbName(dbField.getText());
+        instance.setDbName(dbNameField.getText());
         instance.setUsername(username.getText());
         instance.setPassword(passwordField.getText());
         instance.setPath(projectPath.getText());
@@ -122,10 +124,11 @@ public class CommonUtil {
         instance.setDbSelected(dbRadioButton.isSelected());
         instance.setApiSelected(apiRadioButton.isSelected());
         instance.setRouterSelected(routerRadioButton.isSelected());
-        instance.setGenerateSelected(generateRadioButton.isSelected());
+        instance.setGenerateSelected(generateMarkRadioButton.isSelected());
         instance.setSwaggerSelected(swaggerRadioButton.isSelected());
         instance.setTxSelected(txRradioButton.isSelected());
         instance.setProjectName(projectName);
+        instance.setDbUrl(dbUrl);
         return instance;
     }
 

@@ -36,6 +36,7 @@ public class GenerateConfig implements PersistentStateComponent<GenerateConfig> 
     private boolean swaggerSelected;
     private boolean txSelected;
     private String projectName;
+    private String dbUrl;
 
     public static GenerateConfig getInstance(Project project) {
         GenerateConfig config = ServiceManager.getService(project, GenerateConfig.class);
