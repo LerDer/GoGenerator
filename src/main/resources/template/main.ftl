@@ -50,7 +50,7 @@ func main() {
 	//	configs.Log.Error(err1)
 	//}
 
-//绑定路由
+    //绑定路由
 	new(${tableNameHump}.Router${tableNameHump1}).InitRouter${tableNameHump1}(r)
 
 	configs.InitRedis()
