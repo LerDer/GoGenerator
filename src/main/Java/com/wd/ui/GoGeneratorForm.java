@@ -6,6 +6,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.wd.dbs.DBProperty;
 import com.wd.dbs.DbType;
 import com.wd.dbs.DbUtil;
+import com.wd.i18.GoGeneratorBoundle;
 import com.wd.icon.PluginIcons;
 import com.wd.storage.GenerateConfig;
 import com.wd.util.CommonUtil;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -56,6 +58,18 @@ public class GoGeneratorForm extends DialogWrapper {
 	private JTextField dbNameField;
 	private JTextField hostField;
 	private JTextField portField;
+	private JLabel dbTypeLabel;
+	private JLabel dbNameLabel;
+	private JLabel dbHostLabel;
+	private JLabel dbPortLabel;
+	private JLabel dbUrlLabel;
+	private JLabel usernameLabel;
+	private JLabel passwordLabel;
+	private JLabel projectPathLabel;
+	private JLabel authorLabel;
+	private JLabel projectNameLabel;
+	private JLabel tableNamesLabel;
+	private JLabel optionsLabel;
 
 	private Project project;
 
@@ -65,6 +79,29 @@ public class GoGeneratorForm extends DialogWrapper {
 		init();
 		setTitle("Go Generator");
 		createUIComponents();
+		dbTypeLabel.setText(GoGeneratorBoundle.messageOnSystem("DataBase.Type"));
+		dbNameLabel.setText(GoGeneratorBoundle.messageOnSystem("DataBase.Name"));
+		dbHostLabel.setText(GoGeneratorBoundle.messageOnSystem("DataBase.Host"));
+		dbPortLabel.setText(GoGeneratorBoundle.messageOnSystem("DataBase.Port"));
+		dbUrlLabel.setText(GoGeneratorBoundle.messageOnSystem("DataBase.URL"));
+		usernameLabel.setText(GoGeneratorBoundle.messageOnSystem("DataBase.UserName"));
+		passwordLabel.setText(GoGeneratorBoundle.messageOnSystem("DataBase.Password"));
+		projectPathLabel.setText(GoGeneratorBoundle.messageOnSystem("Project.Path"));
+		authorLabel.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Author"));
+		projectNameLabel.setText(GoGeneratorBoundle.messageOnSystem("Project.Name"));
+		tableNamesLabel.setText(GoGeneratorBoundle.messageOnSystem("Table.Names"));
+		optionsLabel.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Options"));
+		testConnectButton.setText(GoGeneratorBoundle.messageOnSystem("Test.Connection"));
+		selectPathButton.setText(GoGeneratorBoundle.messageOnSystem("Select.Path"));
+
+		structRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Struct"));
+		dbRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.DB"));
+		apiRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Api"));
+		routerRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Router"));
+		txRradioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Transaction"));
+		swaggerRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Swagger"));
+		generateMarkRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Mark"));
+		initRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Init.File"));
 
 		testConnectButton.setIcon(PluginIcons.testCustom);
 		selectPathButton.setIcon(PluginIcons.projectStructure);
@@ -208,6 +245,10 @@ public class GoGeneratorForm extends DialogWrapper {
 		String authorName = authorField.getText();
 		String tableName = tableNames.getSelectedItem().toString();
 		String projectName1 = projectName.getText();
+		if (StringUtils.isBlank(tableName)) {
+			JOptionPane.showMessageDialog(contentPanel, "Please Select Table", "ERROR", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
 		CommonUtil.initGenerateConfig(project, dbSelected, hostField, portField,
 				dbNameField, usernameField, passwordField, projectPath,

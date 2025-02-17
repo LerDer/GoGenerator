@@ -16,7 +16,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="622f8" class="javax.swing.JLabel">
+          <component id="622f8" class="javax.swing.JLabel" binding="usernameLabel">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -24,7 +24,7 @@
               <text value="UserName:"/>
             </properties>
           </component>
-          <component id="cd329" class="javax.swing.JLabel">
+          <component id="cd329" class="javax.swing.JLabel" binding="passwordLabel">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -40,7 +40,7 @@
               <text value="Test Connection"/>
             </properties>
           </component>
-          <component id="f9744" class="javax.swing.JLabel">
+          <component id="f9744" class="javax.swing.JLabel" binding="projectPathLabel">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -56,7 +56,7 @@
               <text value="Select Path"/>
             </properties>
           </component>
-          <component id="a10af" class="javax.swing.JLabel">
+          <component id="a10af" class="javax.swing.JLabel" binding="dbTypeLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -89,7 +89,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="4c64f" class="javax.swing.JLabel">
+          <component id="4c64f" class="javax.swing.JLabel" binding="authorLabel">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -105,7 +105,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="910d2" class="javax.swing.JLabel">
+          <component id="910d2" class="javax.swing.JLabel" binding="projectNameLabel">
             <constraints>
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -121,7 +121,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="713f4" class="javax.swing.JLabel">
+          <component id="713f4" class="javax.swing.JLabel" binding="tableNamesLabel">
             <constraints>
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -145,7 +145,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="426ee" class="javax.swing.JLabel">
+          <component id="426ee" class="javax.swing.JLabel" binding="dbUrlLabel">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -163,7 +163,7 @@
               <editable value="false"/>
             </properties>
           </component>
-          <component id="3ccc9" class="javax.swing.JLabel">
+          <component id="3ccc9" class="javax.swing.JLabel" binding="dbNameLabel">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -171,7 +171,7 @@
               <text value="DataBase Name:"/>
             </properties>
           </component>
-          <component id="f6d6e" class="javax.swing.JLabel">
+          <component id="f6d6e" class="javax.swing.JLabel" binding="dbHostLabel">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -187,7 +187,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="f5f39" class="javax.swing.JLabel">
+          <component id="f5f39" class="javax.swing.JLabel" binding="dbPortLabel">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -221,7 +221,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="39de0" class="javax.swing.JLabel">
+          <component id="39de0" class="javax.swing.JLabel" binding="optionsLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -273,6 +273,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <selected value="false"/>
               <text value="Struct"/>
             </properties>
           </component>

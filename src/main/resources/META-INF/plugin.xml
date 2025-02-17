@@ -18,6 +18,8 @@
         <!-- Add your extensions here -->
         <!--持久化-->
         <projectService serviceImplementation="com.wd.storage.GenerateConfig"/>
+
+        <notification.group id="MyPluginNotificationGroup"/>
     </extensions>
 
     <actions>
