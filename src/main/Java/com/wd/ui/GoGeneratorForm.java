@@ -268,6 +268,12 @@ public class GoGeneratorForm extends DialogWrapper {
 		infoVO.setProjectName(projectName1);
 		infoVO.setSwagger(swaggerRadioButton.isSelected());
 		infoVO.setTx(txRradioButton.isSelected());
+		infoVO.setHost(hostField.getText());
+		infoVO.setPort(portField.getText());
+		infoVO.setUsername(usernameField.getText());
+		infoVO.setPassword(passwordField.getText());
+		infoVO.setDbName(dbNameField.getText());
+
 		if (generateMarkRadioButton.isSelected()) {
 			infoVO.setGenMark("Generate By GoGen");
 		}

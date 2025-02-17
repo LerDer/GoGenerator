@@ -44,4 +44,10 @@ public class TableVO {
     private Boolean swagger;
 
     private Boolean tx;
+
+    private String host;
+    private String port;
+    private String username;
+    private String password;
+    private String dbName;
 }

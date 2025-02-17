@@ -4,11 +4,11 @@ port: 8080
 debug: true
 
 mysql:
- host: 127.0.0.1
- port: 3306
- user: root
- password: admin
- dbname: demo
+ host: ${host}
+ port: ${port}
+ user: ${username}
+ password: ${password}
+ dbname: ${dbName}
 
 logger:
  name: ${projectName}
@@ -22,11 +22,11 @@ redis:
  password: admin
  db: 0
 
-email:
- to:
- port: 465
- from: 1111111@qq.com
- host: smtp.qq.com
- is-ssl: true
- secret: *********
- nickname: Demo
+#email:
+# to:
+# port: 465
+# from: 1111111@qq.com
+# host: smtp.qq.com
+# is-ssl: true
+# secret: *********
+# nickname: Demo

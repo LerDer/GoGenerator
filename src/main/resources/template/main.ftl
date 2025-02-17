@@ -59,4 +59,9 @@ func main() {
 	if err != nil {
 		configs.Log.Error(err.Error())
 	}
+	//检查配置是否启用
+	//Go ---> Go Modules ---> Enable Go Modules integration
+	//执行 go mod tidy 或 go mod download 下载依赖
+	//执行 swag init 命令自动生成swagger文档
+	//启动 访问 http://localhost:8080/swagger/index.html
 }
