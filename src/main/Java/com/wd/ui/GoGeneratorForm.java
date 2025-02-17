@@ -1,7 +1,6 @@
 package com.wd.ui;
 
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.wd.dbs.DBProperty;
@@ -11,12 +10,10 @@ import com.wd.icon.PluginIcons;
 import com.wd.storage.GenerateConfig;
 import com.wd.util.CommonUtil;
 import com.wd.util.FileChooseUi;
+import com.wd.util.FreeMarkerUtil;
 import com.wd.vo.TableVO;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JButton;
@@ -27,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
@@ -67,7 +65,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		init();
 		setTitle("Go Generator");
 		createUIComponents();
-		
+
 		testConnectButton.setIcon(PluginIcons.testCustom);
 		selectPathButton.setIcon(PluginIcons.projectStructure);
 		dbSelected.addItemListener(e -> onDbSelect());
@@ -136,7 +134,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		}
 		Connection con = null;
 		Object item = dbSelected.getSelectedItem();
-		CommonUtil.isTrue(item != null, "数据库类型获取失败！");
+		CommonUtil.isTrue(item != null, "Get DataBase Type Fail！");
 		try {
 			DbType dbType = DbType.getByName(item.toString(), new DBProperty(host, port, dbName, username, password));
 			Class.forName(dbType.getDriverClass());
@@ -147,7 +145,7 @@ public class GoGeneratorForm extends DialogWrapper {
 					authorField, structRadioButton, dbRadioButton, apiRadioButton,
 					routerRadioButton, generateMarkRadioButton, swaggerRadioButton,
 					txRradioButton, projectName1, dbUrlField.getText());
-			
+
 			con = dbType.getConnection();
 			if (con != null) {
 				JOptionPane.showMessageDialog(contentPanel, "数据库连接成功！", "成功", JOptionPane.INFORMATION_MESSAGE);
@@ -196,5 +194,63 @@ public class GoGeneratorForm extends DialogWrapper {
 		for (String listDatum : listData) {
 			dbSelected.addItem(listDatum);
 		}
+	}
+
+	@SneakyThrows
+	@Override
+	protected void doOKAction() {
+		String host = hostField.getText();
+		String port = portField.getText();
+		String dbName = dbNameField.getText();
+		String username = usernameField.getText();
+		String password = passwordField.getText();
+		String path = projectPath.getText();
+		String authorName = authorField.getText();
+		String tableName = tableNames.getSelectedItem().toString();
+		String projectName1 = projectName.getText();
+
+		CommonUtil.initGenerateConfig(project, dbSelected, hostField, portField,
+				dbNameField, usernameField, passwordField, projectPath,
+				authorField, structRadioButton, dbRadioButton, apiRadioButton,
+				routerRadioButton, generateMarkRadioButton, swaggerRadioButton, txRradioButton,
+				projectName1, "");
+		Boolean check = CommonUtil.checkAll(contentPanel, host, dbName, username, password, path, authorName, tableName, projectName1);
+		if (!check) {
+			return;
+		}
+		Object item = dbSelected.getSelectedItem();
+		CommonUtil.isTrue(item != null, "数据库类型获取失败！");
+		DbType dbType = DbType.getByName(item.toString(), new DBProperty(host, port, dbName, username, password));
+		TableVO infoVO = DbUtil.getTableInfo(dbType, tableName);
+		infoVO.setAuthorName(authorName);
+		infoVO.setNowDate(CommonUtil.getNowDate());
+		infoVO.setProjectName(projectName1);
+		infoVO.setSwagger(swaggerRadioButton.isSelected());
+		infoVO.setTx(txRradioButton.isSelected());
+		if (generateMarkRadioButton.isSelected()) {
+			infoVO.setGenMark("Generate By GoGen");
+		}
+		Boolean res = true;
+		if (structRadioButton.isSelected()) {
+			res &= FreeMarkerUtil.genStruct(infoVO, path);
+		}
+		if (dbRadioButton.isSelected()) {
+			res &= FreeMarkerUtil.genDB(infoVO, path);
+		}
+		if (apiRadioButton.isSelected()) {
+			res &= FreeMarkerUtil.genApi(infoVO, path);
+		}
+		if (routerRadioButton.isSelected()) {
+			res &= FreeMarkerUtil.genRouter(infoVO, path);
+		}
+		if (initRadioButton.isSelected()) {
+			res &= FreeMarkerUtil.genInit(infoVO, path);
+		}
+		if (res) {
+			JOptionPane.showMessageDialog(contentPanel, "生成成功！", "成功", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(contentPanel, "生成失败！", "错误", JOptionPane.ERROR_MESSAGE);
+		}
+		//dispose();
 	}
 }

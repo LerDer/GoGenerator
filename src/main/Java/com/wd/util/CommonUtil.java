@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 通用工具
@@ -128,7 +129,9 @@ public class CommonUtil {
         instance.setSwaggerSelected(swaggerRadioButton.isSelected());
         instance.setTxSelected(txRradioButton.isSelected());
         instance.setProjectName(projectName);
-        instance.setDbUrl(dbUrl);
+        if (StringUtils.isNotBlank(dbUrl)) {
+            instance.setDbUrl(dbUrl);
+        }
         return instance;
     }
 
