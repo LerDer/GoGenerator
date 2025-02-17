@@ -275,7 +275,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		infoVO.setDbName(dbNameField.getText());
 
 		if (generateMarkRadioButton.isSelected()) {
-			infoVO.setGenMark("Generate By GoGen");
+			infoVO.setGenMark("Generate By GoGenerator");
 		}
 		Boolean res = true;
 		if (structRadioButton.isSelected()) {
