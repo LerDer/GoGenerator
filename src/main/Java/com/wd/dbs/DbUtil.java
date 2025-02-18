@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
@@ -45,12 +44,13 @@ public class DbUtil {
 				tableVO.setTableComent(resultSet.getString("TABLE_COMMENT"));
 				tables.add(tableVO);
 			}
+			resultSet.close();
+			ps.close();
 			con.close();
-			return tables;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return Collections.emptyList();
+		return tables;
 	}
 
 	public static List<ColumnVO> getColumns(DbType type, String tableName) throws SQLException {
@@ -77,6 +77,9 @@ public class DbUtil {
 						StringUtils.isNotBlank(resultSet.getString("IS_NULLABLE")) && "YES".equalsIgnoreCase(resultSet.getString("COLUMN_KEY")) ? null : "not null;");
 				columns.add(columnVO);
 			}
+			resultSet.close();
+			ps.close();
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -116,11 +119,12 @@ public class DbUtil {
 				tableVO.setPriKeyHump(columnVO.getColumnNameHump());
 				tableVO.setPriKeyHump1(columnVO.getColumnNameHump1());
 			}
+			resultSet.close();
+			ps.close();
 			con.close();
-			return tableVO;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return tableVO;
 	}
 }
