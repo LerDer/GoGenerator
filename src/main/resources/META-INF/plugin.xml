@@ -4,16 +4,13 @@
     <vendor email="lerder@foxmail.com" url="">lww</vendor>
 
     <description><![CDATA[
-        Go code generator that generates code using the Gin + GORM framework, <br/>
-        supports mysql database, <br/>
-        supports logging, Redis, scheduled tasks, Swagger, email sending, <br/>
-        yaml configuration file reading (with support for embedding configuration files into the executable), CORS, HTTPS, <br/>
-        and JSON-formatted response returns.<br/>
-
-        go代码生成器，生成的代码使用 Gin + Gorm 框架， <br/>
-        支持mysql数据库，<br/>
-        支持日志，Redis，定时任务，Swagger，发送邮件，<br/>
-        yaml 配置文件读取（支持配置文件打包进可执行程序），跨域，HTTPS，JSON格式化返回响应 <br/>
+        The GoLang code generator generates code based on the Gin + Gorm framework and manages dependencies using go modules. <br/>
+        It can generate code with one click according to the MySQL database table. <br/>
+        It can generate configuration files with one click, support log file recording, Redis, scheduled tasks, Swagger, send emails, read yaml configuration files (support packing configuration files into executable programs), cross-domain, HTTPS, JSON formatted return responses.<br/>
+        <br/>
+        GoLang 代码生成器，基于 Gin + Gorm 框架生成代码，使用 go modules 管理依赖。 <br/>
+        可以根据mysql数据库表一键生成代码，<br/>
+        可以一键生成配置文件，支持日志文件记录，Redis，定时任务，Swagger，发送邮件，yaml 配置文件读取（支持配置文件打包进可执行程序），跨域，HTTPS，JSON格式化返回响应 <br/>
         <br/>
         author: lww <br/>
         email: lerder@foxmail.com <br/>
