@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.wd.GoGenerator</id>
     <name>GoGenerator</name>
-    <vendor email="lerder@foxmail.com" url="L">LER</vendor>
+    <vendor email="lerder@foxmail.com" url="L">lww</vendor>
 
     <description><![CDATA[
         This is  a code generator for golang, with gorm framework, can generate code very fast

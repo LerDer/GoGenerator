@@ -28,8 +28,9 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.10'
 
     compile "mysql:mysql-connector-java:8.0.18"
-    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
-    compile(group: "com.oracle", name: "ojdbc6", version: "11.2.0.3")
+//    compile 'com.alibaba:druid:1.2.23'
+//    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+//    compile(group: "com.oracle", name: "ojdbc6", version: "11.2.0.3")
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -37,7 +38,8 @@ intellij {
     version '2019.1.4'
     // intellij.updateSinceUntilBuild true
     intellij.updateSinceUntilBuild false
-    localPath 'E:\\workspace\\ideac\\ideaIC-2019.1.4'
+    localPath '/Users/lww/Downloads/ideajar/ideaIC-2019.1.4'
+//    localPath 'E:\\workspace\\ideac\\ideaIC-2019.1.4'
 }
 
 patchPluginXml {
