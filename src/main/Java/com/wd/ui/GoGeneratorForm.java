@@ -227,7 +227,7 @@ public class GoGeneratorForm extends DialogWrapper {
 	}
 
 	private void createUIComponents() {
-		String[] listData = new String[]{DbType.MySQL.name(), DbType.PostgreSQL.name(), DbType.Oracle.name()};
+		String[] listData = new String[]{DbType.MySQL.name()/*, DbType.PostgreSQL.name(), DbType.Oracle.name()*/};
 		for (String listDatum : listData) {
 			dbSelected.addItem(listDatum);
 		}
