@@ -44,6 +44,8 @@ intellij {
 
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      <br>
+     version 1.0.0: <br>
+     1. The code generator for golang，supports mysql database <br/>
+      """
 }

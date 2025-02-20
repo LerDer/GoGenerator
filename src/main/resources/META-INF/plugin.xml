@@ -1,10 +1,22 @@
 <idea-plugin>
     <id>com.wd.GoGenerator</id>
     <name>GoGenerator</name>
-    <vendor email="lerder@foxmail.com" url="L">lww</vendor>
+    <vendor email="lerder@foxmail.com" url="">lww</vendor>
 
     <description><![CDATA[
-        This is  a code generator for golang, with gorm framework, can generate code very fast
+        Go code generator that generates code using the Gin + GORM framework, <br/>
+        supports mysql database, <br/>
+        supports logging, Redis, scheduled tasks, Swagger, email sending, <br/>
+        yaml configuration file reading (with support for embedding configuration files into the executable), CORS, HTTPS, <br/>
+        and JSON-formatted response returns.<br/>
+
+        go代码生成器，生成的代码使用 Gin + Gorm 框架， <br/>
+        支持mysql数据库，<br/>
+        支持日志，Redis，定时任务，Swagger，发送邮件，<br/>
+        yaml 配置文件读取（支持配置文件打包进可执行程序），跨域，HTTPS，JSON格式化返回响应 <br/>
+        <br/>
+        author: lww <br/>
+        email: lerder@foxmail.com <br/>
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
