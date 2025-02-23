@@ -26,4 +26,5 @@ require (
 	golang.org/x/crypto v0.0.0-20220408190544-5352b0902921 // indirect
 	golang.org/x/sys v0.0.0-20220408201424-a24fb2fb8a0f // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
+	github.com/swaggo/swag v1.16.4 // indirect
 )
