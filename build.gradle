@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.wd'
-version '1.0.0'
+version '1.0.1'
 
 sourceCompatibility = 1.8
 
@@ -44,6 +44,9 @@ intellij {
 
 patchPluginXml {
     changeNotes """
+      <br>
+     version 1.0.1: <br>
+     1. Add swagger dependence in go.mod template <br/>
       <br>
      version 1.0.0: <br>
      1. The code generator for golang，supports mysql database <br/>
