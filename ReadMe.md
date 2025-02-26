@@ -2,7 +2,9 @@
 
 golang代码生成器，go有很多代码生成器，不过都是命令行操作，不太直观。
 
-这个代码生成器采用插件的方式，用起来更加简单。
+所以开发了一个代码生成器插件，这个代码生成器采用插件的方式，用起来更加简单，已经发布到jetbrains插件市场。
+
+插件地址：https://plugins.jetbrains.com/plugin/26613-gogenerator
 
 ## 使用方法
 
@@ -59,6 +61,11 @@ GoLand配置
 <img src="/images/image-20250221123306395.png" alt="image-20250221123306395" style="zoom:50%;" />
 
 ### 6、执行 swag init 命令自动生成swagger文档
+
+要先安装swag命令
+```
+go install github.com/swaggo/swag/cmd/swag@latest
+```
 
 <img src="/images/image-20250221123511636.png" alt="image-20250221123511636" style="zoom:50%;" />
 

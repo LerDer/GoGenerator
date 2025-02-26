@@ -2,9 +2,10 @@ package configs
 
 import (
 	"fmt"
+	"sync"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"sync"
 )
 
 type MySQL struct {
@@ -25,6 +26,13 @@ func initDB() {
 	if err != nil {
 		panic(err)
 	}
+    // 获取底层的 *sql.DB 对象
+    sqlDB := db.DB()
+    // 配置连接池
+    sqlDB.SetMaxOpenConns(100)                // 最大打开连接数
+    sqlDB.SetMaxIdleConns(10)                 // 最大空闲连接数
+    sqlDB.SetConnMaxIdleTime(time.Minute * 5) // 连接的最大空闲时间
+    sqlDB.SetConnMaxLifetime(time.Minute * 5) // 连接的最大存活时间
 	DB = db
 }
 
