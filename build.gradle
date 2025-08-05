@@ -1,33 +1,26 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.4.21'
+    id 'org.jetbrains.intellij' version '1.17.3'
 }
 
 group 'com.wd'
 version '1.0.1'
 
-sourceCompatibility = 1.8
-
 repositories {
     maven { url 'https://maven.aliyun.com/repository/public' }
-    maven { url 'https://maven.aliyun.com/repository/google' }
-    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
     mavenCentral()
-    google()
 }
 
 dependencies {
     // compile 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.2'
-    compileOnly 'org.projectlombok:lombok:1.18.2'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.2'
-    testCompileOnly 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor('org.projectlombok:lombok:1.18.24')
+    compileOnly('org.projectlombok:lombok:1.18.24')
+    testAnnotationProcessor('org.projectlombok:lombok:1.18.24')
+    testCompileOnly('org.projectlombok:lombok:1.18.24')
 
-    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.31'
-
-    compile 'org.apache.commons:commons-lang3:3.10'
-
-    compile "mysql:mysql-connector-java:8.0.18"
+    implementation("org.freemarker:freemarker:2.3.31")
+    implementation("org.apache.commons:commons-lang3:3.10")
+    implementation("mysql:mysql-connector-java:8.0.18")
 //    compile 'com.alibaba:druid:1.2.23'
 //    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
 //    compile(group: "com.oracle", name: "ojdbc6", version: "11.2.0.3")
@@ -35,15 +28,17 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2019.1.4'
-    // intellij.updateSinceUntilBuild true
-    intellij.updateSinceUntilBuild false
-    localPath '/Users/lww/Downloads/ideajar/ideaIC-2019.1.4'
+//    version '2019.1.4'
+//     intellij.updateSinceUntilBuild true
+    intellij.setUpdateSinceUntilBuild(false)
+    localPath.set("/Users/lww/Downloads/ideaJar/ideaIC-2022.3")
+//    localPath '/Users/lww/Downloads/ideajar/ideaIC-2019.1.4'
 //    localPath 'E:\\workspace\\ideac\\ideaIC-2019.1.4'
 }
 
 patchPluginXml {
-    changeNotes """
+    changeNotes
+     """
       <br>
      version 1.0.1: <br>
      1. Add swagger dependence in go.mod template <br/>

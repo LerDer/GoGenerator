@@ -27,15 +27,12 @@ public class FileChooseUi {
         return new FileChooseUi(project);
     }
 
-    public VirtualFile showSingleFolderSelectionDialog(String title, VirtualFile toSelect, VirtualFile... roots) {
+    public VirtualFile showSingleFolderSelectionDialog(String title, VirtualFile toSelect) {
         if (title == null) {
             return null;
         }
         final FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
         descriptor.setTitle(title);
-        if (null != roots) {
-            descriptor.setRoots(roots);
-        }
         return FileChooser.chooseFile(descriptor, this.project, toSelect);
     }
 

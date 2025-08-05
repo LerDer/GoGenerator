@@ -1,4 +1,4 @@
-#   GoGenerator
+#   GoGenerator代码生成器
 
 golang代码生成器，go有很多代码生成器，不过都是命令行操作，不太直观。
 

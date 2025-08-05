@@ -1,6 +1,7 @@
 package com.wd.ui;
 
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectUtil;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.wd.dbs.DBProperty;
@@ -148,9 +149,9 @@ public class GoGeneratorForm extends DialogWrapper {
 		FileChooseUi uiComponentFacade = FileChooseUi.getInstance(project);
 		VirtualFile baseDir = null;
 		if (project != null) {
-			baseDir = project.getBaseDir();
+			baseDir = ProjectUtil.guessProjectDir(project);
 		}
-		final VirtualFile vf = uiComponentFacade.showSingleFolderSelectionDialog("Select Project Path", baseDir, baseDir);
+		final VirtualFile vf = uiComponentFacade.showSingleFolderSelectionDialog("Select Project Path", baseDir);
 		if (null != vf) {
 			this.projectPath.setText(vf.getPath());
 		}
@@ -162,10 +163,10 @@ public class GoGeneratorForm extends DialogWrapper {
 		String port = portField.getText();
 		String dbName = dbNameField.getText();
 		String username = usernameField.getText();
-		String password = passwordField.getText();
+		char[] password = passwordField.getPassword();
 		String projectName1 = projectName.getText();
 
-		Boolean check = CommonUtil.check(contentPanel, host, dbName, username, password);
+		Boolean check = CommonUtil.check(contentPanel, host, dbName, username, new String(password));
 		if (!check) {
 			return;
 		}
@@ -173,7 +174,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		Object item = dbSelected.getSelectedItem();
 		CommonUtil.isTrue(item != null, "Get DataBase Type Fail！");
 		try {
-			DbType dbType = DbType.getByName(item.toString(), new DBProperty(host, port, dbName, username, password));
+			DbType dbType = DbType.getByName(item.toString(), new DBProperty(host, port, dbName, username, new String(password)));
 			Class.forName(dbType.getDriverClass());
 			dbUrlField.setText(String.format(dbType.getConnectionUrlPattern(), host, port, dbName));
 
@@ -240,7 +241,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		String port = portField.getText();
 		String dbName = dbNameField.getText();
 		String username = usernameField.getText();
-		String password = passwordField.getText();
+		char[] password = passwordField.getPassword();
 		String path = projectPath.getText();
 		String authorName = authorField.getText();
 		String tableName = tableNames.getSelectedItem().toString();
@@ -255,13 +256,13 @@ public class GoGeneratorForm extends DialogWrapper {
 				authorField, structRadioButton, dbRadioButton, apiRadioButton,
 				routerRadioButton, generateMarkRadioButton, swaggerRadioButton, txRradioButton,
 				projectName1, "");
-		Boolean check = CommonUtil.checkAll(contentPanel, host, dbName, username, password, path, authorName, tableName, projectName1);
+		Boolean check = CommonUtil.checkAll(contentPanel, host, dbName, username, new String(password), path, authorName, tableName, projectName1);
 		if (!check) {
 			return;
 		}
 		Object item = dbSelected.getSelectedItem();
 		CommonUtil.isTrue(item != null, "数据库类型获取失败！");
-		DbType dbType = DbType.getByName(item.toString(), new DBProperty(host, port, dbName, username, password));
+		DbType dbType = DbType.getByName(item.toString(), new DBProperty(host, port, dbName, username, new String(password)));
 		TableVO infoVO = DbUtil.getTableInfo(dbType, tableName);
 		infoVO.setAuthorName(authorName);
 		infoVO.setNowDate(CommonUtil.getNowDate());
@@ -271,7 +272,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		infoVO.setHost(hostField.getText());
 		infoVO.setPort(portField.getText());
 		infoVO.setUsername(usernameField.getText());
-		infoVO.setPassword(passwordField.getText());
+		infoVO.setPassword(new String(passwordField.getPassword()));
 		infoVO.setDbName(dbNameField.getText());
 
 		if (generateMarkRadioButton.isSelected()) {

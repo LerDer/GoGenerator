@@ -18,7 +18,7 @@ public class PluginIcons {
 	public static final Icon projectStructure = load("/icons/projectStructure.svg");
 	public static final Icon projectStructure_dark = load("/icons/projectStructure_dark.svg");
 	
-	public static final Icon success = load("/icons/success.svg");
+	public static final Icon success = load("./icons/success.svg");
 	public static final Icon success_dark = load("/icons/success_dark.svg");
 	
 	public static final Icon testCustom = load("/icons/testCustom.svg");

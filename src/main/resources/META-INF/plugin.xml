@@ -27,8 +27,6 @@
         <!-- Add your extensions here -->
         <!--持久化-->
         <projectService serviceImplementation="com.wd.storage.GenerateConfig"/>
-
-        <notification.group id="MyPluginNotificationGroup"/>
     </extensions>
 
     <actions>
@@ -40,6 +38,6 @@
 
     </actions>
 
-    <idea-version since-build="191"/>
+    <idea-version since-build="223"/>
 
 </idea-plugin>

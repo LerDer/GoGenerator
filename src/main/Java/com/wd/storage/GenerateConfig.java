@@ -1,6 +1,5 @@
 package com.wd.storage;
 
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
@@ -39,19 +38,11 @@ public class GenerateConfig implements PersistentStateComponent<GenerateConfig> 
     private String dbUrl;
 
     public static GenerateConfig getInstance(Project project) {
-        GenerateConfig config = ServiceManager.getService(project, GenerateConfig.class);
+        GenerateConfig config = project.getService(GenerateConfig.class);
         if (config == null) {
             config = new GenerateConfig();
         }
         return config;
-    }
-
-    public static GenerateConfig getInstance() {
-        return ApplicationManager.getApplication().getComponent(GenerateConfig.class);
-    }
-
-    public static GenerateConfig getInstance1(Project project) {
-        return project.getComponent(GenerateConfig.class);
     }
 
     @Override
