@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.wd'
-version '1.0.1'
+version '1.0.2'
 
 repositories {
     maven { url 'https://maven.aliyun.com/repository/public' }
@@ -39,6 +39,10 @@ intellij {
 patchPluginXml {
     changeNotes
      """
+      <br>
+     version 1.0.2: <br>
+     1. fix some warnings <br/>
+     1. update to support idea 2022.3+ <br/>
       <br>
      version 1.0.1: <br>
      1. Add swagger dependence in go.mod template <br/>
