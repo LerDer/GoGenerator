@@ -118,7 +118,7 @@ public class CommonUtil {
         instance.setDbPort(portField.getText());
         instance.setDbName(dbNameField.getText());
         instance.setUsername(username.getText());
-        instance.setPassword(passwordField.getText());
+        instance.setPassword(new String(passwordField.getPassword()));
         instance.setPath(projectPath.getText());
         instance.setAuthorName(author.getText());
         instance.setStructSelected(structRadioButton.isSelected());
