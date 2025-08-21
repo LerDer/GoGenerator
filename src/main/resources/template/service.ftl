@@ -5,6 +5,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"${projectName}/configs"
+	<#if moduleName?? >
+	"${projectName}/${moduleName}/struct"
+	</#if>
 	"strconv"
 )
 

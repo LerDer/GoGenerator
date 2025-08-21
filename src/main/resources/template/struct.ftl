@@ -1,4 +1,5 @@
-package ${tableNameHump}
+package _struct
+//package ${tableNameHump}
 
 import (
 	"${projectName}/utils"

@@ -15,6 +15,7 @@ import com.wd.util.FileChooseUi;
 import com.wd.util.FreeMarkerUtil;
 import com.wd.util.NotificationUtil;
 import com.wd.vo.TableVO;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -76,6 +77,9 @@ public class GoGeneratorForm extends DialogWrapper {
 	private JTextField businessNameTextField;
 	private JLabel tablePrefixLabel;
 	private JLabel businessNameLabel;
+	private JTextField moduleNameTextField;
+	private JButton selectModuleButton;
+	private JLabel moduleNameLabel;
 
 	private Project project;
 
@@ -101,6 +105,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		businessNameLabel.setText(GoGeneratorBoundle.messageOnSystem("Business.Name"));
 		testConnectButton.setText(GoGeneratorBoundle.messageOnSystem("Test.Connection"));
 		selectPathButton.setText(GoGeneratorBoundle.messageOnSystem("Select.Path"));
+		moduleNameLabel.setText(GoGeneratorBoundle.messageOnSystem("Module.Name"));
 
 		structRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Struct"));
 		dbRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.DB"));
@@ -109,6 +114,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		txRradioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Transaction"));
 		swaggerRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Swagger"));
 		generateMarkRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Mark"));
+		selectModuleButton.setText(GoGeneratorBoundle.messageOnSystem("Select.Module"));
 		initRadioButton.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Init.File"));
 
 		testConnectButton.setIcon(PluginIcons.testCustom);
@@ -137,6 +143,7 @@ public class GoGeneratorForm extends DialogWrapper {
 			txRradioButton.setSelected(config.isTxSelected());
 			projectName.setText(config.getProjectName());
 			dbUrlField.setText(config.getDbUrl());
+			moduleNameTextField.setText(config.getModuleName());
 			if (config.getPassword() != null) {
 				onTest();
 			}
@@ -160,6 +167,27 @@ public class GoGeneratorForm extends DialogWrapper {
 				}
 			}
 		});
+		selectModuleButton.addActionListener(e -> chooseModule(project));
+	}
+
+	private void chooseModule(Project project) {
+		GenerateConfig instance = GenerateConfig.getInstance(project);
+		FileChooseUi uiComponentFacade = FileChooseUi.getInstance(project);
+		VirtualFile baseDir = ProjectUtil.guessProjectDir(project);
+		final VirtualFile vf = uiComponentFacade.showSingleFolderSelectionDialog("选择包文件夹", baseDir);
+		if (null != vf) {
+			String path = vf.getPath();
+			String substring;
+			if (path.lastIndexOf(File.separator) < 0) {
+				substring = path.substring(path.lastIndexOf("/") + 1);
+			} else {
+				substring = path.substring(path.lastIndexOf(File.separator) + 1);
+			}
+			this.moduleNameTextField.setText(substring);
+			this.moduleNameTextField.setToolTipText(substring);
+			instance.setModuleName(substring);
+			instance.setModulePath(path);
+		}
 	}
 
 	@Nullable
@@ -281,6 +309,10 @@ public class GoGeneratorForm extends DialogWrapper {
 			return;
 		}
 
+		GenerateConfig instance = GenerateConfig.getInstance(project);
+		String modulePath = instance.getModulePath();
+		String moduleName = instance.getModuleName();
+
 		CommonUtil.initGenerateConfig(project, dbSelected, hostField, portField,
 				dbNameField, usernameField, passwordField, projectPath,
 				authorField, structRadioButton, dbRadioButton, apiRadioButton,
@@ -310,22 +342,25 @@ public class GoGeneratorForm extends DialogWrapper {
 		infoVO.setUsername(usernameField.getText());
 		infoVO.setPassword(new String(passwordField.getPassword()));
 		infoVO.setDbName(dbNameField.getText());
+		if (StringUtils.isNotBlank(moduleName)) {
+			infoVO.setModuleName(moduleName);
+		}
 
 		if (generateMarkRadioButton.isSelected()) {
 			infoVO.setGenMark("Generate By GoGenerator");
 		}
 		Boolean res = true;
 		if (structRadioButton.isSelected()) {
-			res &= FreeMarkerUtil.genStruct(infoVO, path);
+			res &= FreeMarkerUtil.genStruct(infoVO, modulePath + File.separator + "struct");
 		}
 		if (dbRadioButton.isSelected()) {
-			res &= FreeMarkerUtil.genDB(infoVO, path);
+			res &= FreeMarkerUtil.genDB(infoVO, modulePath + File.separator + "service");
 		}
 		if (apiRadioButton.isSelected()) {
-			res &= FreeMarkerUtil.genApi(infoVO, path);
+			res &= FreeMarkerUtil.genApi(infoVO, modulePath + File.separator + "api");
 		}
 		if (routerRadioButton.isSelected()) {
-			res &= FreeMarkerUtil.genRouter(infoVO, path);
+			res &= FreeMarkerUtil.genRouter(infoVO, modulePath + File.separator + "router");
 		}
 		if (initRadioButton.isSelected()) {
 			res &= FreeMarkerUtil.genInit(infoVO, path);

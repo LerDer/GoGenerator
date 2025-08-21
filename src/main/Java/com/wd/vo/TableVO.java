@@ -46,6 +46,7 @@ public class TableVO {
 	private String username;
 	private String password;
 	private String dbName;
+	private String moduleName;
 
 	public String getTableNameComment() {
 		return tableName + " - " + tableComent;

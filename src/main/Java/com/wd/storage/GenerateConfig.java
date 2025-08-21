@@ -1,7 +1,6 @@
 package com.wd.storage;
 
 import com.intellij.openapi.components.PersistentStateComponent;
-import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.project.Project;
@@ -36,6 +35,9 @@ public class GenerateConfig implements PersistentStateComponent<GenerateConfig> 
     private boolean txSelected;
     private String projectName;
     private String dbUrl;
+
+    private String moduleName;
+    private String modulePath;
 
     public static GenerateConfig getInstance(Project project) {
         GenerateConfig config = project.getService(GenerateConfig.class);

@@ -2,6 +2,9 @@ package ${tableNameHump}
 
 import (
 	"github.com/gin-gonic/gin"
+	<#if moduleName?? >
+	"${projectName}/${moduleName}/api"
+	</#if>
 )
 
 // ${tableComent!""} 路由组件
