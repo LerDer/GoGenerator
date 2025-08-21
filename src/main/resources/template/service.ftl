@@ -6,12 +6,12 @@ import (
 	"github.com/jinzhu/gorm"
 	"${projectName}/configs"
 	<#if moduleName?? >
-	"${projectName}/${moduleName}/struct"
+	. "${projectName}/${moduleName}/struct"
 	</#if>
 	"strconv"
 )
 
-// ${tableComent!""} 数据库操作文件
+// Service${tableNameHump1} ${tableComent!""} 数据库操作文件
 // author ${authorName!""}
 // date ${nowDate!""}
 // ${genMark!""}

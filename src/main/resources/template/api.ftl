@@ -4,8 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"${projectName}/response"
 	<#if moduleName?? >
-	"${projectName}/${moduleName}/service"
-	"${projectName}/${moduleName}/struct"
+	. "${projectName}/${moduleName}/service"
+	. "${projectName}/${moduleName}/struct"
 	</#if>
 	"strconv"
 )

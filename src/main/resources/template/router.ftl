@@ -3,11 +3,11 @@ package ${tableNameHump}
 import (
 	"github.com/gin-gonic/gin"
 	<#if moduleName?? >
-	"${projectName}/${moduleName}/api"
+	. "${projectName}/${moduleName}/api"
 	</#if>
 )
 
-// ${tableComent!""} 路由组件
+// Router${tableNameHump1} ${tableComent!""} 路由组件
 // author ${authorName!""}
 // date ${nowDate!""}
 // ${genMark!""}
