@@ -25,7 +25,7 @@ public enum DbType implements DBInterface {
 
 			typeMap.put("BOOL", "bool");
 			typeMap.put("BOOLEAN", "bool");
-			typeMap.put("BIT", "[]byte");
+			typeMap.put("BIT", "utils.BoolBit");
 
 			typeMap.put("CHAR", "string");
 			typeMap.put("VARCHAR", "string");
