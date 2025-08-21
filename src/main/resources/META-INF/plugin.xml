@@ -27,6 +27,7 @@
         <!-- Add your extensions here -->
         <!--持久化-->
         <projectService serviceImplementation="com.wd.storage.GenerateConfig"/>
+        <notificationGroup id="GoGenerator.NotificationGroup" displayType="BALLOON"/>
     </extensions>
 
     <actions>

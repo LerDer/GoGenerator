@@ -77,7 +77,7 @@ public class FreeMarkerUtil {
             Template template = configuration.getTemplate(templateName);
             // step5 生成数据
             String parentPath = outPath + "/" + (addTableName ? vo.getTableNameHump() : "") + "/";
-            String finalName = StringUtils.isBlank(fileName) ? vo.getTableName().toLowerCase() + postfix : fileName + postfix;
+            String finalName = StringUtils.isBlank(fileName) ? vo.getTableNameNoPrefix().toLowerCase() + postfix : fileName + postfix;
             File docFile = new File(parentPath + finalName);
             if (!docFile.getParentFile().exists()) {
                 docFile.getParentFile().mkdirs();

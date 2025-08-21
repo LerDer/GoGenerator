@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 @Getter
 public enum DbType implements DBInterface {
-	MySQL("com.mysql.jdbc.Driver", "jdbc:mysql://%s:%s/%s?serverTimezone=Asia/Shanghai", "mysql-connector-java-5.1.38.jar") {
+	MySQL("com.mysql.cj.jdbc.Driver", "jdbc:mysql://%s:%s/%s?serverTimezone=Asia/Shanghai", "mysql-connector-java-5.1.38.jar") {
 		@Override
 		public Map<String, String> getTypeMap() {
 			Map<String, String> typeMap = new HashMap<>(16);

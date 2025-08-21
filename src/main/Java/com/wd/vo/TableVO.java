@@ -1,53 +1,67 @@
 package com.wd.vo;
 
+import com.wd.util.CommonUtil;
 import java.util.List;
 import lombok.Data;
 
 @Data
 public class TableVO {
 
-    /**
-     * 原表名
-     */
-    private String tableName;
+	/**
+	 * 原表名
+	 */
+	private String tableName;
 
-    /**
-     * 驼峰命名
-     */
-    private String tableNameHump;
+	/**
+	 * 表名去前缀
+	 */
+	private String tableNameNoPrefix;
 
-    /**
-     * 大写开头驼峰命名
-     */
-    private String tableNameHump1;
+	private String tableFirstWords;
 
-    private String tableFirstWords;
+	private String tableComent;
 
-    private String tableComent;
+	private String priKey;
 
-    private String priKey;
+	private String priKeyHump;
 
-    private String priKeyHump;
+	private String priKeyHump1;
 
-    private String priKeyHump1;
+	private List<ColumnVO> columnVOS;
 
-    private List<ColumnVO> columnVOS;
+	private String authorName;
 
-    private String authorName;
+	private String nowDate;
 
-    private String nowDate;
+	private String genMark;
 
-    private String genMark;
+	private String projectName;
 
-    private String projectName;
+	private Boolean swagger;
 
-    private Boolean swagger;
+	private Boolean tx;
 
-    private Boolean tx;
+	private String host;
+	private String port;
+	private String username;
+	private String password;
+	private String dbName;
 
-    private String host;
-    private String port;
-    private String username;
-    private String password;
-    private String dbName;
+	public String getTableNameComment() {
+		return tableName + " - " + tableComent;
+	}
+
+	/**
+	 * 驼峰命名
+	 */
+	public String getTableNameHump() {
+		return CommonUtil.underlineToHump(tableNameNoPrefix);
+	}
+
+	/**
+	 * 大写开头驼峰命名
+	 */
+	public String getTableNameHump1() {
+		return CommonUtil.underlineToHump1(tableNameNoPrefix);
+	}
 }

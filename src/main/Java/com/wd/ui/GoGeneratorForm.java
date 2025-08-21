@@ -13,6 +13,7 @@ import com.wd.storage.GenerateConfig;
 import com.wd.util.CommonUtil;
 import com.wd.util.FileChooseUi;
 import com.wd.util.FreeMarkerUtil;
+import com.wd.util.NotificationUtil;
 import com.wd.vo.TableVO;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -37,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class GoGeneratorForm extends DialogWrapper {
 
-	private JComboBox dbSelected;
+	private JComboBox<String> dbSelected;
 	private JTextField dbUrlField;
 	private JTextField usernameField;
 	private JButton testConnectButton;
@@ -45,7 +46,7 @@ public class GoGeneratorForm extends DialogWrapper {
 	private JButton selectPathButton;
 	private JTextField authorField;
 	private JTextField projectName;
-	private JComboBox tableNames;
+	private AutoCompleteComboBox tableNames;
 	private JRadioButton structRadioButton;
 	private JRadioButton dbRadioButton;
 	private JRadioButton apiRadioButton;
@@ -71,6 +72,10 @@ public class GoGeneratorForm extends DialogWrapper {
 	private JLabel projectNameLabel;
 	private JLabel tableNamesLabel;
 	private JLabel optionsLabel;
+	private JTextField tablePrefixTextField;
+	private JTextField businessNameTextField;
+	private JLabel tablePrefixLabel;
+	private JLabel businessNameLabel;
 
 	private Project project;
 
@@ -92,6 +97,8 @@ public class GoGeneratorForm extends DialogWrapper {
 		projectNameLabel.setText(GoGeneratorBoundle.messageOnSystem("Project.Name"));
 		tableNamesLabel.setText(GoGeneratorBoundle.messageOnSystem("Table.Names"));
 		optionsLabel.setText(GoGeneratorBoundle.messageOnSystem("GENERATE.Options"));
+		tablePrefixLabel.setText(GoGeneratorBoundle.messageOnSystem("Table.Prefix"));
+		businessNameLabel.setText(GoGeneratorBoundle.messageOnSystem("Business.Name"));
 		testConnectButton.setText(GoGeneratorBoundle.messageOnSystem("Test.Connection"));
 		selectPathButton.setText(GoGeneratorBoundle.messageOnSystem("Select.Path"));
 
@@ -130,6 +137,9 @@ public class GoGeneratorForm extends DialogWrapper {
 			txRradioButton.setSelected(config.isTxSelected());
 			projectName.setText(config.getProjectName());
 			dbUrlField.setText(config.getDbUrl());
+			if (config.getPassword() != null) {
+				onTest();
+			}
 		} else {
 			dbSelected.setSelectedItem(DbType.MySQL.name());
 			hostField.setText(DbType.MySQL.getDefaultHost());
@@ -137,6 +147,19 @@ public class GoGeneratorForm extends DialogWrapper {
 			usernameField.setText(DbType.MySQL.getDefaultUserName());
 		}
 
+		tableNames.addActionListener(e -> {
+			if (tableNames.getSelectedItem() != null) {
+				String tableNameSelect = tableNames.getSelectedItem().toString();
+				if (tableNameSelect.indexOf(" - ") > 0) {
+					String tableComment = tableNameSelect.split(" - ")[1];
+					businessNameTextField.setText(tableComment);
+				}
+				if (tableNameSelect.indexOf("_") > 0) {
+					String tablePrefix = tableNameSelect.split("_")[0];
+					tablePrefixTextField.setText(tablePrefix + "_");
+				}
+			}
+		});
 	}
 
 	@Nullable
@@ -154,6 +177,7 @@ public class GoGeneratorForm extends DialogWrapper {
 		final VirtualFile vf = uiComponentFacade.showSingleFolderSelectionDialog("Select Project Path", baseDir);
 		if (null != vf) {
 			this.projectPath.setText(vf.getPath());
+			this.projectName.setText(vf.getName());
 		}
 	}
 
@@ -186,13 +210,16 @@ public class GoGeneratorForm extends DialogWrapper {
 
 			con = dbType.getConnection();
 			if (con != null) {
-				JOptionPane.showMessageDialog(contentPanel, "数据库连接成功！", "成功", JOptionPane.INFORMATION_MESSAGE);
+				NotificationUtil.showInfoNotification(project,GoGeneratorBoundle.messageOnSystem("Success"), GoGeneratorBoundle.messageOnSystem("Connection.Success"));
+				//JOptionPane.showMessageDialog(contentPanel, "数据库连接成功！", "成功", JOptionPane.INFORMATION_MESSAGE);
 				addItem(dbName, dbType, null);
 			} else {
-				JOptionPane.showMessageDialog(contentPanel, "数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+				NotificationUtil.showErrorNotification(project,GoGeneratorBoundle.messageOnSystem("Failed"), GoGeneratorBoundle.messageOnSystem("Connection.Failed"));
+				//JOptionPane.showMessageDialog(contentPanel, "数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			JOptionPane.showMessageDialog(contentPanel, "数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+						NotificationUtil.showErrorNotification(project,GoGeneratorBoundle.messageOnSystem("Failed"), GoGeneratorBoundle.messageOnSystem("Connection.Failed"));
+			//JOptionPane.showMessageDialog(contentPanel, "数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
 		} finally {
 			if (con != null) {
 				try {
@@ -206,7 +233,7 @@ public class GoGeneratorForm extends DialogWrapper {
 
 	private void addItem(String dbName, DbType type, String keyword) throws SQLException {
 		List<TableVO> allTables = DbUtil.getAllTables(type, dbName, keyword);
-		List<String> tables = allTables.stream().map(TableVO::getTableName).collect(Collectors.toList());
+		List<String> tables = allTables.stream().map(TableVO::getTableNameComment).collect(Collectors.toList());
 		for (String table : tables) {
 			tableNames.addItem(table);
 		}
@@ -245,6 +272,9 @@ public class GoGeneratorForm extends DialogWrapper {
 		String path = projectPath.getText();
 		String authorName = authorField.getText();
 		String tableName = tableNames.getSelectedItem().toString();
+		if (tableName.indexOf(" - ") > 0) {
+			tableName = tableName.split(" - ")[0];
+		}
 		String projectName1 = projectName.getText();
 		if (StringUtils.isBlank(tableName)) {
 			JOptionPane.showMessageDialog(contentPanel, "Please Select Table", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -264,6 +294,12 @@ public class GoGeneratorForm extends DialogWrapper {
 		CommonUtil.isTrue(item != null, "数据库类型获取失败！");
 		DbType dbType = DbType.getByName(item.toString(), new DBProperty(host, port, dbName, username, new String(password)));
 		TableVO infoVO = DbUtil.getTableInfo(dbType, tableName);
+		if (StringUtils.isNotBlank(tablePrefixTextField.getText())) {
+			infoVO.setTableNameNoPrefix(infoVO.getTableName().replaceFirst(tablePrefixTextField.getText(), ""));
+		}
+		if (StringUtils.isNotBlank(businessNameTextField.getText())) {
+			infoVO.setTableComent(businessNameTextField.getText());
+		}
 		infoVO.setAuthorName(authorName);
 		infoVO.setNowDate(CommonUtil.getNowDate());
 		infoVO.setProjectName(projectName1);
@@ -295,9 +331,11 @@ public class GoGeneratorForm extends DialogWrapper {
 			res &= FreeMarkerUtil.genInit(infoVO, path);
 		}
 		if (res) {
-			JOptionPane.showMessageDialog(contentPanel, "生成成功！", "成功", JOptionPane.INFORMATION_MESSAGE);
+			NotificationUtil.showInfoNotification(project,GoGeneratorBoundle.messageOnSystem("Success"), GoGeneratorBoundle.messageOnSystem("Generate.Success"));
+			//JOptionPane.showMessageDialog(contentPanel, "生成成功！", GoGeneratorBoundle.messageOnSystem("Success"), JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(contentPanel, "生成失败！", "错误", JOptionPane.ERROR_MESSAGE);
+			NotificationUtil.showErrorNotification(project,GoGeneratorBoundle.messageOnSystem("Failed"), GoGeneratorBoundle.messageOnSystem("Generate.Failed"));
+			//JOptionPane.showMessageDialog(contentPanel, "生成失败！", GoGeneratorBoundle.messageOnSystem("Failed"), JOptionPane.ERROR_MESSAGE);
 		}
 		//dispose();
 	}

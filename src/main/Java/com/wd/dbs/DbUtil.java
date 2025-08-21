@@ -39,8 +39,8 @@ public class DbUtil {
 			while (resultSet.next()) {
 				tableVO = new TableVO();
 				tableVO.setTableName(resultSet.getString("TABLE_NAME"));
-				tableVO.setTableNameHump(CommonUtil.underlineToHump(resultSet.getString("TABLE_NAME")));
-				tableVO.setTableNameHump1(CommonUtil.underlineToHump1(resultSet.getString("TABLE_NAME")));
+				//tableVO.setTableNameHump(CommonUtil.underlineToHump(resultSet.getString("TABLE_NAME")));
+				//tableVO.setTableNameHump1(CommonUtil.underlineToHump1(resultSet.getString("TABLE_NAME")));
 				tableVO.setTableComent(resultSet.getString("TABLE_COMMENT"));
 				tables.add(tableVO);
 			}
@@ -99,8 +99,8 @@ public class DbUtil {
 				tableVO = new TableVO();
 				tableVO.setTableName(resultSet.getString("TABLE_NAME"));
 				tableVO.setTableFirstWords(CommonUtil.getFirstWords1(resultSet.getString("TABLE_NAME")));
-				tableVO.setTableNameHump(CommonUtil.underlineToHump(resultSet.getString("TABLE_NAME")));
-				tableVO.setTableNameHump1(CommonUtil.underlineToHump1(resultSet.getString("TABLE_NAME")));
+				//tableVO.setTableNameHump(CommonUtil.underlineToHump(resultSet.getString("TABLE_NAME")));
+				//tableVO.setTableNameHump1(CommonUtil.underlineToHump1(resultSet.getString("TABLE_NAME")));
 				tableVO.setTableComent(resultSet.getString("TABLE_COMMENT"));
 			}
 			if (tableVO == null) {
