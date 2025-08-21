@@ -17,10 +17,10 @@ type ${tableNameHump1}Router struct {
 //new(router.${tableNameHump1}Router).Init${tableNameHump1}Router(r)
 func (s *${tableNameHump1}Router) Init${tableNameHump1}Router(e *gin.Engine) {
 	${tableNameHump}Router := e.Group("${tableNameHump}")
-	${tableNameHump}Router.POST("save", Save${tableNameHump1})        // 保存
-	${tableNameHump}Router.DELETE("delete", Delete${tableNameHump1})    // 删除
-	${tableNameHump}Router.PUT("update", Update${tableNameHump1})    // 更新
-	${tableNameHump}Router.GET("getOne", Get${tableNameHump1})        // 查询一个
-	${tableNameHump}Router.GET("getList", Query${tableNameHump1}List) // 查询多个
+	${tableNameHump}Router.POST("", Save${tableNameHump1})        // 保存
+	${tableNameHump}Router.DELETE("", Delete${tableNameHump1})    // 删除
+	${tableNameHump}Router.PUT("", Update${tableNameHump1})    // 更新
+	${tableNameHump}Router.GET("", Get${tableNameHump1})        // 查询一个
+	${tableNameHump}Router.GET("/list", Query${tableNameHump1}List) // 查询多个
 }
 

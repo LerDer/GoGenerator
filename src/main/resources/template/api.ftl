@@ -22,7 +22,7 @@ var ${tableNameHump}Service = new(${tableNameHump1}Service)
 // @Tags ${tableNameHump}
 // @Param ${tableNameHump} body _struct.${tableNameHump1} true "${tableComent!""}"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump}/save [POST]
+// @Router /${tableNameHump} [POST]
 </#if>
 //json参数
 func Save${tableNameHump1}(c *gin.Context) {
@@ -43,9 +43,9 @@ func Save${tableNameHump1}(c *gin.Context) {
 // Delete${tableNameHump1}
 // @Summary 删除 ${tableNameHump}
 // @Tags ${tableNameHump}
-// @Param id formData int true "id"
+// @Param id query int true "id"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump}/delete [DELETE]
+// @Router /${tableNameHump} [DELETE]
 </#if>
 //formData参数
 func Delete${tableNameHump1}(c *gin.Context) {
@@ -68,7 +68,7 @@ func Delete${tableNameHump1}(c *gin.Context) {
 // @Tags ${tableNameHump}
 // @Param ${tableNameHump} body _struct.${tableNameHump1} true "${tableComent!""}"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump}/update [PUT]
+// @Router /${tableNameHump} [PUT]
 </#if>
 //json参数
 func Update${tableNameHump1}(c *gin.Context) {
@@ -91,7 +91,7 @@ func Update${tableNameHump1}(c *gin.Context) {
 // @Tags ${tableNameHump}
 // @Param id query int true "id"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump}/getOne [GET]
+// @Router /${tableNameHump} [GET]
 </#if>
 //url参数
 func Get${tableNameHump1}(c *gin.Context) {
@@ -112,11 +112,11 @@ func Get${tableNameHump1}(c *gin.Context) {
 	// Query${tableNameHump1}List
 	// @Summary 高级查询 ${tableNameHump}
 	// @Tags ${tableNameHump}
-	// @Param page formData int true "page"
-	// @Param pagesize formData int true "pagesize"
-	// @Param orderBy formData string false "orderBy"
+	// @Param page query int true "page"
+	// @Param pagesize query int true "pagesize"
+	// @Param orderBy query string false "orderBy"
 	// @Success 200 object response.Response 成功后返回值
-	// @Router /${tableNameHump}/getList [GET]
+	// @Router /${tableNameHump}/list [GET]
 </#if>
 //formData参数
 func Query${tableNameHump1}List(c *gin.Context) {
