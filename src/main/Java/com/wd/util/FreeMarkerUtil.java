@@ -20,19 +20,19 @@ import org.apache.commons.lang3.StringUtils;
 public class FreeMarkerUtil {
 
     public static Boolean genStruct(TableVO vo, String outPath) {
-        return genCode(vo, outPath, "struct.ftl", ".go", "/template", null, true);
+        return genCode(vo, outPath, "struct.ftl", ".go", "/template", null, false);
     }
 
     public static Boolean genApi(TableVO vo, String outPath) {
-        return genCode(vo, outPath, "api.ftl", "_api.go", "/template", null, true);
+        return genCode(vo, outPath, "api.ftl", "_api.go", "/template", null, false);
     }
 
     public static Boolean genDB(TableVO vo, String outPath) {
-        return genCode(vo, outPath, "service.ftl", "_service.go", "/template", null, true);
+        return genCode(vo, outPath, "service.ftl", "_service.go", "/template", null, false);
     }
 
     public static Boolean genRouter(TableVO vo, String outPath) {
-        return genCode(vo, outPath, "router.ftl", "_router.go", "/template", null, true);
+        return genCode(vo, outPath, "router.ftl", "_router.go", "/template", null, false);
     }
 
     public static Boolean genInit(TableVO vo, String outPath) {
@@ -76,7 +76,7 @@ public class FreeMarkerUtil {
             // step4 加载模版文件
             Template template = configuration.getTemplate(templateName);
             // step5 生成数据
-            String parentPath = outPath + "/" + (addTableName ? vo.getTableNameHump() : "") + "/";
+            String parentPath = outPath + File.separator + (addTableName ? vo.getTableNameHump() + File.separator : "");
             String finalName = StringUtils.isBlank(fileName) ? vo.getTableNameNoPrefix().toLowerCase() + postfix : fileName + postfix;
             File docFile = new File(parentPath + finalName);
             if (!docFile.getParentFile().exists()) {
