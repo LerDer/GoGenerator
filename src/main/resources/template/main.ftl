@@ -14,11 +14,9 @@ import (
 	</#if>
 )
 
-/**
-* @author ${authorName!""}
-* @date ${nowDate!""}
-* ${genMark!""}
-*/
+// author ${authorName!""}
+// date ${nowDate!""}
+// ${genMark!""}
 <#if swagger >
 // @title ${projectName} swagger
 // @version 1.0

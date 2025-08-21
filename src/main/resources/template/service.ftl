@@ -8,14 +8,10 @@ import (
 	"strconv"
 )
 
-/**
-* ${tableComent!""} 数据库操作文件
-*
-* @author ${authorName!""}
-* @date ${nowDate!""}
-* ${genMark!""}
-*/
-
+// ${tableComent!""} 数据库操作文件
+// author ${authorName!""}
+// date ${nowDate!""}
+// ${genMark!""}
 type Service${tableNameHump1} struct {
 }
 

@@ -6,14 +6,10 @@ import (
 	"strconv"
 )
 
-/**
-* ${tableComent!""} api接口
-*
-* @author ${authorName!""}
-* @date ${nowDate!""}
-* ${genMark!""}
-*/
-
+// ${tableComent!""} api接口
+// author ${authorName!""}
+// date ${nowDate!""}
+// ${genMark!""}
 var service${tableNameHump1} = new(Service${tableNameHump1})
 
 <#if swagger >

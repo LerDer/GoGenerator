@@ -4,14 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/**
-* ${tableComent!""} 路由组件
-*
-* @author ${authorName!""}
-* @date ${nowDate!""}
-* ${genMark!""}
-*/
-
+// ${tableComent!""} 路由组件
+// author ${authorName!""}
+// date ${nowDate!""}
+// ${genMark!""}
 type Router${tableNameHump1} struct {
 }
 //todo 把下面这一行复制到main.go中
