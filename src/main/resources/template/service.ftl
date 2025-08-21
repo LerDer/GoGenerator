@@ -1,4 +1,4 @@
-package ${tableNameHump}
+package service
 
 import (
 	"errors"
@@ -11,16 +11,16 @@ import (
 	"strconv"
 )
 
-// Service${tableNameHump1} ${tableComent!""} 数据库操作文件
+// ${tableNameHump1}Service ${tableComent!""} 数据库操作文件
 // author ${authorName!""}
 // date ${nowDate!""}
 // ${genMark!""}
-type Service${tableNameHump1} struct {
+type ${tableNameHump1}Service struct {
 }
 
 var db *gorm.DB
 
-func (s *Service${tableNameHump1}) Save${tableNameHump1}(${tableFirstWords} *${tableNameHump1}) (id int, err error) {
+func (s *${tableNameHump1}Service) Save${tableNameHump1}(${tableFirstWords} *${tableNameHump1}) (id int, err error) {
 	<#if tx >
 	db = configs.GetDB().Begin()
 	<#else>
@@ -39,7 +39,7 @@ func (s *Service${tableNameHump1}) Save${tableNameHump1}(${tableFirstWords} *${t
 	}
 }
 
-func (s *Service${tableNameHump1}) Delete${tableNameHump1}(id int) error {
+func (s *${tableNameHump1}Service) Delete${tableNameHump1}(id int) error {
 	<#if tx >
 		db = configs.GetDB().Begin()
 	<#else>
@@ -58,7 +58,7 @@ func (s *Service${tableNameHump1}) Delete${tableNameHump1}(id int) error {
 	}
 }
 
-func (s *Service${tableNameHump1}) Update${tableNameHump1}(${tableFirstWords} *${tableNameHump1}) (*${tableNameHump1}, error) {
+func (s *${tableNameHump1}Service) Update${tableNameHump1}(${tableFirstWords} *${tableNameHump1}) (*${tableNameHump1}, error) {
 	<#if tx >
 		db = configs.GetDB().Begin()
 	<#else>
@@ -81,7 +81,7 @@ func (s *Service${tableNameHump1}) Update${tableNameHump1}(${tableFirstWords} *$
 	}
 }
 
-func (s *Service${tableNameHump1}) Get${tableNameHump1}(id int) (*${tableNameHump1}, error) {
+func (s *${tableNameHump1}Service) Get${tableNameHump1}(id int) (*${tableNameHump1}, error) {
 	<#if tx >
 		db = configs.GetDB().Begin()
 	<#else>
@@ -101,7 +101,7 @@ func (s *Service${tableNameHump1}) Get${tableNameHump1}(id int) (*${tableNameHum
 	}
 }
 
-func (s *Service${tableNameHump1}) Query${tableNameHump1}List(c *gin.Context) (${tableFirstWords}s []${tableNameHump1}, err error) {
+func (s *${tableNameHump1}Service) Query${tableNameHump1}List(c *gin.Context) (${tableFirstWords}s []${tableNameHump1}, err error) {
 	<#if tx >
 		db = configs.GetDB().Begin()
 	<#else>

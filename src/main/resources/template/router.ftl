@@ -1,4 +1,4 @@
-package ${tableNameHump}
+package router
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,15 +7,15 @@ import (
 	</#if>
 )
 
-// Router${tableNameHump1} ${tableComent!""} 路由组件
+// ${tableNameHump1}Router ${tableComent!""} 路由组件
 // author ${authorName!""}
 // date ${nowDate!""}
 // ${genMark!""}
-type Router${tableNameHump1} struct {
+type ${tableNameHump1}Router struct {
 }
 //todo 把下面这一行复制到main.go中
-//new(${tableNameHump}.Router${tableNameHump1}).InitRouter${tableNameHump1}(r)
-func (s *Router${tableNameHump1}) InitRouter${tableNameHump1}(e *gin.Engine) {
+//new(${tableNameHump}.${tableNameHump1}Router).Init${tableNameHump1}Router(r)
+func (s *${tableNameHump1}Router) Init${tableNameHump1}Router(e *gin.Engine) {
 	${tableNameHump}Router := e.Group("${tableNameHump}")
 	${tableNameHump}Router.POST("save", Save${tableNameHump1})        // 保存
 	${tableNameHump}Router.POST("delete", Delete${tableNameHump1})    // 删除

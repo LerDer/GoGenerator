@@ -5,7 +5,7 @@ import (
 	"${projectName}/utils"
 )
 
-// ${tableNameHump1} ${tableNameHump1} ${tableComent!""}
+// ${tableNameHump1} ${tableComent!""}
 // author ${authorName!""}
 // date ${nowDate!""}
 // ${genMark!""}

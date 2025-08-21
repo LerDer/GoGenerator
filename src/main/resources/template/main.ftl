@@ -49,7 +49,7 @@ func main() {
 	//}
 
     //绑定路由
-	new(${tableNameHump}.Router${tableNameHump1}).InitRouter${tableNameHump1}(r)
+	new(${tableNameHump}.${tableNameHump1}Router).Init${tableNameHump1}Router(r)
 
 	configs.InitRedis()
 	//默认8080 listen and serve on 0.0.0.0:8080

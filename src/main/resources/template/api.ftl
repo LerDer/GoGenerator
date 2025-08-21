@@ -1,4 +1,4 @@
-package ${tableNameHump}
+package api
 
 import (
 	"github.com/gin-gonic/gin"
@@ -14,7 +14,7 @@ import (
 // author ${authorName!""}
 // date ${nowDate!""}
 // ${genMark!""}
-var service${tableNameHump1} = new(Service${tableNameHump1})
+var ${tableNameHump}Service = new(${tableNameHump1}Service)
 
 <#if swagger >
 // Save${tableNameHump1} @Summary 保存 ${tableNameHump}
@@ -31,7 +31,7 @@ func Save${tableNameHump1}(c *gin.Context) {
 		response.FailWithMessage("参数错误", c)
 		return
 	}
-	if id, err := service${tableNameHump1}.Save${tableNameHump1}(&${tableNameHump}); err == nil {
+	if id, err := ${tableNameHump}Service.Save${tableNameHump1}(&${tableNameHump}); err == nil {
 		response.OkWithDetailed(id, "保存成功", c)
 	} else {
 		response.FailWithMessage("保存失败", c)
@@ -43,7 +43,7 @@ func Save${tableNameHump1}(c *gin.Context) {
 // @Tags ${tableNameHump}
 // @Param id formData int true "id"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump}/delete [POST]
+// @Router /${tableNameHump}/delete [DELETE]
 </#if>
 //formData参数
 func Delete${tableNameHump1}(c *gin.Context) {
@@ -53,7 +53,7 @@ func Delete${tableNameHump1}(c *gin.Context) {
 	return
 	}
 	intId, _ := strconv.Atoi(id)
-	if err := service${tableNameHump1}.Delete${tableNameHump1}(intId); err != nil {
+	if err := ${tableNameHump}Service.Delete${tableNameHump1}(intId); err != nil {
 		response.FailWithMessage("删除失败", c)
 	} else {
 		response.OkWithDetailed("", "删除成功", c)
@@ -65,7 +65,7 @@ func Delete${tableNameHump1}(c *gin.Context) {
 // @Tags ${tableNameHump}
 // @Param ${tableNameHump} body ${tableNameHump}.${tableNameHump1} true "${tableComent!""}"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump}/update [POST]
+// @Router /${tableNameHump}/update [PUT]
 </#if>
 //json参数
 func Update${tableNameHump1}(c *gin.Context) {
@@ -75,7 +75,7 @@ func Update${tableNameHump1}(c *gin.Context) {
 		response.FailWithMessage("参数错误", c)
 		return
 	}
-	if u, err := service${tableNameHump1}.Update${tableNameHump1}(&${tableNameHump}); err != nil {
+	if u, err := ${tableNameHump}Service.Update${tableNameHump1}(&${tableNameHump}); err != nil {
 		response.FailWithDetailed(err.Error(), "更新失败", c)
 	} else {
 		response.OkWithDetailed(u, "更新成功", c)
@@ -97,7 +97,7 @@ func Get${tableNameHump1}(c *gin.Context) {
 	return
 	}
 	intId, _ := strconv.Atoi(id)
-	if ${tableNameHump}, err := service${tableNameHump1}.Get${tableNameHump1}(intId); err != nil {
+	if ${tableNameHump}, err := ${tableNameHump}Service.Get${tableNameHump1}(intId); err != nil {
 		response.FailWithMessage("获取失败", c)
 	} else {
 		response.OkWithDetailed(${tableNameHump}, "获取成功", c)
@@ -111,13 +111,13 @@ func Get${tableNameHump1}(c *gin.Context) {
 	// @Param pagesize formData int true "pagesize"
 	// @Param orderBy formData string false "orderBy"
 	// @Success 200 object response.Response 成功后返回值
-	// @Router /${tableNameHump}/getList [POST]
+	// @Router /${tableNameHump}/getList [GET]
 </#if>
 //formData参数
 func Query${tableNameHump1}List(c *gin.Context) {
 	page, _ := strconv.Atoi(c.PostForm("page"))
 	pagesize, _ := strconv.Atoi(c.PostForm("pagesize"))
-	if ${tableNameHump}s, err := service${tableNameHump1}.Query${tableNameHump1}List(c); err != nil {
+	if ${tableNameHump}s, err := ${tableNameHump}Service.Query${tableNameHump1}List(c); err != nil {
 		response.FailWithMessage("获取失败", c)
 	} else {
 		response.OkWithDetailed(response.PageResult{
