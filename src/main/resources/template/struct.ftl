@@ -1,5 +1,4 @@
 package entity
-//package ${tableNameHump}
 
 import (
 	"${projectName}/module_system/db"
