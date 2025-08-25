@@ -21,7 +21,7 @@ var ${tableNameHump}Service = new(${tableNameHump1}Service)
 <#if swagger >
 // Save${tableNameHump1}
 // @Summary 保存 ${tableNameHump}
-// @Tags ${tableNameHump}
+// @Tags ${tableComent!""}
 // @Param ${tableNameHump} body api.${tableNameHump1} true "${tableComent!""}"
 // @Success 200 object response.Response 成功后返回值
 // @Router /${tableNameHump} [POST]
@@ -44,7 +44,7 @@ func Save${tableNameHump1}(c *gin.Context) {
 <#if swagger >
 // Delete${tableNameHump1}
 // @Summary 删除 ${tableNameHump}
-// @Tags ${tableNameHump}
+// @Tags ${tableComent!""}
 // @Param id query int true "id"
 // @Success 200 object response.Response 成功后返回值
 // @Router /${tableNameHump}/:${priKeyHump} [DELETE]
@@ -67,7 +67,7 @@ func Delete${tableNameHump1}(c *gin.Context) {
 <#if swagger >
 // Update${tableNameHump1}
 // @Summary 更新 ${tableNameHump}
-// @Tags ${tableNameHump}
+// @Tags ${tableComent!""}
 // @Param ${tableNameHump} body api.${tableNameHump1} true "${tableComent!""}"
 // @Success 200 object response.Response 成功后返回值
 // @Router /${tableNameHump} [PUT]
@@ -90,7 +90,7 @@ func Update${tableNameHump1}(c *gin.Context) {
 <#if swagger >
 // Get${tableNameHump1}
 // @Summary 查询 ${tableNameHump}
-// @Tags ${tableNameHump}
+// @Tags ${tableComent!""}
 // @Param id query int true "id"
 // @Success 200 object response.Response 成功后返回值
 // @Router /${tableNameHump}/:${priKeyHump} [GET]
@@ -113,7 +113,7 @@ func Get${tableNameHump1}(c *gin.Context) {
 <#if swagger >
 	// Query${tableNameHump1}List
 	// @Summary 高级查询 ${tableNameHump}
-	// @Tags ${tableNameHump}
+	// @Tags ${tableComent!""}
 	// @Param page query int true "page"
 	// @Param pagesize query int true "pagesize"
 	// @Param orderBy query string false "orderBy"
