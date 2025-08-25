@@ -1,13 +1,15 @@
 package api
 
 import (
-	"github.com/gin-gonic/gin"
-	"${projectName}/module_system/response"
-	<#if moduleName?? >
-	. "${projectName}/${moduleName}/service"
-	. "${projectName}/${moduleName}/struct"
-	</#if>
 	"strconv"
+	"time"
+
+	. "${projectName}/${moduleName}/entity"
+	. "${projectName}/${moduleName}/entity/res"
+	. "${projectName}/${moduleName}/repository"
+	"${projectName}/module_system/response"
+
+	"github.com/gin-gonic/gin"
 )
 
 // ${tableComent!""} api接口

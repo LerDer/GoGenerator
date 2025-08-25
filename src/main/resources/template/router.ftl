@@ -4,9 +4,7 @@ import (
 	"${projectName}/middleware/jwt"
 	"${projectName}/middleware/router"
 	"${projectName}/module_config"
-	<#if moduleName?? >
 	"${projectName}/${moduleName}/api"
-	</#if>
 )
 
 func init() {

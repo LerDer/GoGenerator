@@ -2,13 +2,11 @@ package repository
 
 import (
 	"errors"
-	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
-	"${projectName}/configs"
-	<#if moduleName?? >
-	. "${projectName}/${moduleName}/struct"
-	</#if>
 	"strconv"
+
+	. "${projectName}/${moduleName}/entity"
+	"${projectName}/module_config/mysql"
+	"github.com/gin-gonic/gin"
 )
 
 // ${tableNameHump1}Service ${tableComent!""} 数据库操作文件
