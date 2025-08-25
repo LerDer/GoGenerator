@@ -47,7 +47,7 @@ public class GoGeneratorForm extends DialogWrapper {
 	private JButton selectPathButton;
 	private JTextField authorField;
 	private JTextField projectName;
-	private AutoCompleteComboBox tableNames;
+	private JComboBox<String> tableNames;
 	private JRadioButton structRadioButton;
 	private JRadioButton dbRadioButton;
 	private JRadioButton apiRadioButton;
