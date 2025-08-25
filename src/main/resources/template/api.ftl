@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
-	"${projectName}/response"
+	"${projectName}/module_system/response"
 	<#if moduleName?? >
 	. "${projectName}/${moduleName}/service"
 	. "${projectName}/${moduleName}/struct"
@@ -20,7 +20,7 @@ var ${tableNameHump}Service = new(${tableNameHump1}Service)
 // Save${tableNameHump1}
 // @Summary 保存 ${tableNameHump}
 // @Tags ${tableNameHump}
-// @Param ${tableNameHump} body _struct.${tableNameHump1} true "${tableComent!""}"
+// @Param ${tableNameHump} body api.${tableNameHump1} true "${tableComent!""}"
 // @Success 200 object response.Response 成功后返回值
 // @Router /${tableNameHump} [POST]
 </#if>
@@ -45,7 +45,7 @@ func Save${tableNameHump1}(c *gin.Context) {
 // @Tags ${tableNameHump}
 // @Param id query int true "id"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump} [DELETE]
+// @Router /${tableNameHump}/{${priKeyHump}} [DELETE]
 </#if>
 //formData参数
 func Delete${tableNameHump1}(c *gin.Context) {
@@ -66,7 +66,7 @@ func Delete${tableNameHump1}(c *gin.Context) {
 // Update${tableNameHump1}
 // @Summary 更新 ${tableNameHump}
 // @Tags ${tableNameHump}
-// @Param ${tableNameHump} body _struct.${tableNameHump1} true "${tableComent!""}"
+// @Param ${tableNameHump} body api.${tableNameHump1} true "${tableComent!""}"
 // @Success 200 object response.Response 成功后返回值
 // @Router /${tableNameHump} [PUT]
 </#if>
@@ -91,7 +91,7 @@ func Update${tableNameHump1}(c *gin.Context) {
 // @Tags ${tableNameHump}
 // @Param id query int true "id"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump} [GET]
+// @Router /${tableNameHump}/{${priKeyHump}} [GET]
 </#if>
 //url参数
 func Get${tableNameHump1}(c *gin.Context) {

@@ -1,4 +1,4 @@
-package service
+package repository
 
 import (
 	"errors"
@@ -18,13 +18,11 @@ import (
 type ${tableNameHump1}Service struct {
 }
 
-var db *gorm.DB
-
 func (s *${tableNameHump1}Service) Save${tableNameHump1}(${tableFirstWords} *${tableNameHump1}) (id int, err error) {
 	<#if tx >
-	db = configs.GetDB().Begin()
+	db := mysql.Db.Begin()
 	<#else>
-	db = configs.GetDB()
+	db := mysql.Db
 	</#if>
 	if err := db.Create(&${tableFirstWords}).Error; err != nil {
 		<#if tx >
@@ -41,9 +39,9 @@ func (s *${tableNameHump1}Service) Save${tableNameHump1}(${tableFirstWords} *${t
 
 func (s *${tableNameHump1}Service) Delete${tableNameHump1}(id int) error {
 	<#if tx >
-		db = configs.GetDB().Begin()
+		db := mysql.Db.Begin()
 	<#else>
-		db = configs.GetDB()
+		db := mysql.Db
 	</#if>
 	if err := db.Where(&${tableNameHump1}{${priKeyHump1}: id}).Delete(${tableNameHump1}{}).Error; err != nil {
 		<#if tx >
@@ -60,9 +58,9 @@ func (s *${tableNameHump1}Service) Delete${tableNameHump1}(id int) error {
 
 func (s *${tableNameHump1}Service) Update${tableNameHump1}(${tableFirstWords} *${tableNameHump1}) (*${tableNameHump1}, error) {
 	<#if tx >
-		db = configs.GetDB().Begin()
+		db := mysql.Db.Begin()
 	<#else>
-		db = configs.GetDB()
+		db := mysql.Db
 	</#if>
 	id := ${tableFirstWords}.${priKeyHump1}
 	if id == 0 {
@@ -83,9 +81,9 @@ func (s *${tableNameHump1}Service) Update${tableNameHump1}(${tableFirstWords} *$
 
 func (s *${tableNameHump1}Service) Get${tableNameHump1}(id int) (*${tableNameHump1}, error) {
 	<#if tx >
-		db = configs.GetDB().Begin()
+		db := mysql.Db.Begin()
 	<#else>
-		db = configs.GetDB()
+		db := mysql.Db
 	</#if>
 	var ${tableFirstWords} ${tableNameHump1}
 	if err := db.Model(&${tableNameHump1}{}).Where(&${tableNameHump1}{${priKeyHump1}: id}).Find(&${tableFirstWords}).Error; err != nil {
@@ -103,9 +101,9 @@ func (s *${tableNameHump1}Service) Get${tableNameHump1}(id int) (*${tableNameHum
 
 func (s *${tableNameHump1}Service) Query${tableNameHump1}List(c *gin.Context) (${tableFirstWords}s []${tableNameHump1}, err error) {
 	<#if tx >
-		db = configs.GetDB().Begin()
+		db := mysql.Db.Begin()
 	<#else>
-		db = configs.GetDB()
+		db := mysql.Db
 	</#if>
 	tx := db.Model(&${tableNameHump1}{}).Where("1=1")
 

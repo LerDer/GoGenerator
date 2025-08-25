@@ -1,8 +1,8 @@
-package _struct
+package entity
 //package ${tableNameHump}
 
 import (
-	"${projectName}/utils"
+	"${projectName}/module_system/db"
 )
 
 // ${tableNameHump1} ${tableComent!""}

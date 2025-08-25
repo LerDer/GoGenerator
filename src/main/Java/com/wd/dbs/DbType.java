@@ -25,7 +25,7 @@ public enum DbType implements DBInterface {
 
 			typeMap.put("BOOL", "bool");
 			typeMap.put("BOOLEAN", "bool");
-			typeMap.put("BIT", "utils.BoolBit");
+			typeMap.put("BIT", "db.BoolBit");
 
 			typeMap.put("CHAR", "string");
 			typeMap.put("VARCHAR", "string");
@@ -34,10 +34,10 @@ public enum DbType implements DBInterface {
 			typeMap.put("MEDIUMTEXT", "string");
 			typeMap.put("LONGTEXT", "string");
 
-			typeMap.put("DATE", "utils.Date");
-			typeMap.put("DATETIME", "utils.Time");
-			typeMap.put("TIMESTAMP", "utils.Time");
-			typeMap.put("TIME", "utils.Time");
+			typeMap.put("DATE", "db.Date");
+			typeMap.put("DATETIME", "db.Time");
+			typeMap.put("TIMESTAMP", "db.Time");
+			typeMap.put("TIME", "db.Time");
 
 			typeMap.put("NUMERIC", "float");
 			typeMap.put("FLOAT", "float");
@@ -69,6 +69,7 @@ public enum DbType implements DBInterface {
 
 			typeMap.put("BOOL", "bool");
 			typeMap.put("BOOLEAN", "bool");
+			typeMap.put("BIT", "db.BoolBit");
 
 			typeMap.put("CHAR", "string");
 			typeMap.put("VARCHAR", "string");
@@ -77,10 +78,10 @@ public enum DbType implements DBInterface {
 			typeMap.put("MEDIUMTEXT", "string");
 			typeMap.put("LONGTEXT", "string");
 
-			typeMap.put("DATE", "utils.Date");
-			typeMap.put("DATETIME", "utils.Time");
-			typeMap.put("TIMESTAMP", "utils.Time");
-			typeMap.put("TIME", "utils.Time");
+			typeMap.put("DATE", "db.Date");
+			typeMap.put("DATETIME", "db.Time");
+			typeMap.put("TIMESTAMP", "db.Time");
+			typeMap.put("TIME", "db.Time");
 
 			typeMap.put("NUMERIC", "float");
 			typeMap.put("FLOAT", "float");
