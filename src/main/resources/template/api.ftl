@@ -47,11 +47,11 @@ func Save${tableNameHump1}(c *gin.Context) {
 // @Tags ${tableNameHump}
 // @Param id query int true "id"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump}/{${priKeyHump}} [DELETE]
+// @Router /${tableNameHump}/:${priKeyHump} [DELETE]
 </#if>
-//formData参数
+//url路径参数
 func Delete${tableNameHump1}(c *gin.Context) {
-	id := c.PostForm("id")
+	id := c.Param("id")
 	if id == "" {
 		response.FailWithMessage("参数错误", c)
 	return
@@ -93,11 +93,11 @@ func Update${tableNameHump1}(c *gin.Context) {
 // @Tags ${tableNameHump}
 // @Param id query int true "id"
 // @Success 200 object response.Response 成功后返回值
-// @Router /${tableNameHump}/{${priKeyHump}} [GET]
+// @Router /${tableNameHump}/:${priKeyHump} [GET]
 </#if>
-//url参数
+//url路径参数
 func Get${tableNameHump1}(c *gin.Context) {
-	id := c.Query("id")
+	id := c.Param("id")
 	if id == "" {
 		response.FailWithMessage("参数错误", c)
 	return
@@ -120,10 +120,10 @@ func Get${tableNameHump1}(c *gin.Context) {
 	// @Success 200 object response.Response 成功后返回值
 	// @Router /${tableNameHump}/list [GET]
 </#if>
-//formData参数
+//url查询参数
 func Query${tableNameHump1}List(c *gin.Context) {
-	page, _ := strconv.Atoi(c.PostForm("page"))
-	pagesize, _ := strconv.Atoi(c.PostForm("pagesize"))
+	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+	pagesize, _ := strconv.Atoi(c.DefaultQuery("pagesize", "10"))
 	if ${tableNameHump}s, err := ${tableNameHump}Service.Query${tableNameHump1}List(c); err != nil {
 		response.FailWithMessage("获取失败", c)
 	} else {
