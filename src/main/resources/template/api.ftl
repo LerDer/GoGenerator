@@ -2,10 +2,8 @@ package api
 
 import (
 	"strconv"
-	"time"
 
 	. "${projectName}/${moduleName}/entity"
-	. "${projectName}/${moduleName}/entity/res"
 	. "${projectName}/${moduleName}/service"
 	"${projectName}/module_system/response"
 
