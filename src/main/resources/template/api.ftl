@@ -6,7 +6,7 @@ import (
 
 	. "${projectName}/${moduleName}/entity"
 	. "${projectName}/${moduleName}/entity/res"
-	. "${projectName}/${moduleName}/repository"
+	. "${projectName}/${moduleName}/service"
 	"${projectName}/module_system/response"
 
 	"github.com/gin-gonic/gin"

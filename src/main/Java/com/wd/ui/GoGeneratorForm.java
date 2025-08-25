@@ -354,7 +354,7 @@ public class GoGeneratorForm extends DialogWrapper {
 			res &= FreeMarkerUtil.genStruct(infoVO, modulePath + File.separator + "entity");
 		}
 		if (dbRadioButton.isSelected()) {
-			res &= FreeMarkerUtil.genDB(infoVO, modulePath + File.separator + "repository");
+			res &= FreeMarkerUtil.genDB(infoVO, modulePath + File.separator + "service");
 		}
 		if (apiRadioButton.isSelected()) {
 			res &= FreeMarkerUtil.genApi(infoVO, modulePath + File.separator + "api");
